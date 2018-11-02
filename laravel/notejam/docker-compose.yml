@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  db:
+   image: mysql:5.7
+   restart: always
+   environment:
+    DEBUG: "true"
+    MYSQL_ROOT_PASSWORD: asdf
+    MYSQL_DATABASE: asdf
+    MYSQL_USER: asdf
+    MYSQL_PASSWORD: asdf
+  
+  app:
+   depends_on:
+    - migration
+   build: .
+   ports:
+    - "8000:8000"
+   restart: always
+   environment:
+    DB_HOST: db:3306
+    DB_USER: asdf
+    DB_PASSWORD: asdf
+    DB_NAME: asdf
+  
+  migration:
+    depends_on:
+     - db
+    build: .
+    command: python manage.py migrate
+    restart: always
+    links:
+     - db
+   environment:
+    DB_HOST: db:3306
+    DB_USER: asdf
+    DB_PASSWORD: asdf
+    DB_NAME: asdf
