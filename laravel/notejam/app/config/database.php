@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => getenv('DB_HOST'),
-			'database'  => getenv('DB_NAME'),
-			'username'  => getenv('DB_USER'),
-			'password'  => getenv('DB_PASSWORD'),
+			'host'      => getenv('MYSQL_HOST'),
+			'database'  => getenv('MYSQL_DATABASE'),
+			'username'  => getenv('MYSQL_USER'),
+			'password'  => getenv('MYSQL_PASSWORD'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -5,20 +5,33 @@ services:
    image: mysql:5.7
    restart: always
    environment:
-    MYSQL_ROOT_PASSWORD: asdf
-    MYSQL_DATABASE: asdf
-    MYSQL_USER: asdf
-    MYSQL_PASSWORD: asdf
+    MYSQL_ROOT_PASSWORD: myrootpassword
+    MYSQL_DATABASE: mydatabase
+    MYSQL_USER: myuser
+    MYSQL_PASSWORD: mypassword
   
   app:
    depends_on:
-    - db
+    - migration
    build: .
    ports:
     - "8000:8000"
    restart: always
    environment:
-    DB_HOST: db:3306
-    DB_USER: asdf
-    DB_PASSWORD: asdf
-    DB_NAME: asdf
+    MYSQL_HOST: db:3306
+    MYSQL_DATABASE: mydatabase
+    MYSQL_USER: myuser
+    MYSQL_PASSWORD: mypassword
+
+  migration:
+   depends_on:
+    - db
+   build: .
+   image: app
+   restart: always
+   command: php artisan -vvv migrate --force
+   environment:
+    MYSQL_HOST: db:3306
+    MYSQL_DATABASE: mydatabase
+    MYSQL_USER: myuser
+    MYSQL_PASSWORD: mypassword
