@@ -1,6 +1,6 @@
 FROM php:5
 
-COPY . /app
+COPY ./notejam /app
 WORKDIR /app
 
 RUN apt-get update && \
