@@ -28,7 +28,7 @@ module "rds" {
   maintenance_window      = ""
   multi_az                = false
   name                    = "mydatabase"
-  password                = "${random_string.main.result}"
+  password                = "${coalesce(random_string.main.result, "")}"
   port                    = "3306"
   subnet_ids              = "${module.vpc.private_subnet_ids["private"]}"
   username                = "myusername"
@@ -53,3 +53,16 @@ resource "local_file" "task-definition-migrate" {
   content  = "${data.template_file.container-overrides-migrate.rendered}"
   filename = "${path.cwd}/migrations.sh"
 }
+
+#module "codepipeline_ecs" {
+#  source = "github.com/rms1000watt/terraform-aws-codepipeline-ecs.git"
+#
+#  github_org         = "seanscottking"
+#  github_repo        = "notejam"
+#  github_oauth_token = "f4c57885286e35ec0cfd50bd9613b285dcce33e6"
+#
+#  ecs_cluster         = "notejam-dev"
+#  ecs_service         = "notejam-dev"
+#  ecs_task_definition = "notejam-dev"
+#}
+
