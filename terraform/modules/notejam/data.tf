@@ -1,4 +1,5 @@
 data "aws_region" "main" {}
+data "aws_caller_identity" "main" {}
 
 data "template_file" "container-definitions" {
   template = "${file("${path.module}/templates/container-definitions.json.tpl")}"

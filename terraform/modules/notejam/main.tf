@@ -49,20 +49,19 @@ module "mywebservice" {
   container_http_port   = 8000
 }
 
+module "cicd" {
+  source = "../cicd"
+
+  name              = "${local.name_tag}"
+  project           = "${local.project}"
+  environment       = "${local.environment}"
+  github_owner      = "${var.github_owner}"
+  github_repo       = "${var.github_repo}"
+  github_branch     = "${var.github_branch}"
+  github_oauthtoken = "${var.github_oauthtoken}"
+}
+
 resource "local_file" "task-definition-migrate" {
   content  = "${data.template_file.container-overrides-migrate.rendered}"
   filename = "${path.cwd}/migrations.sh"
 }
-
-#module "codepipeline_ecs" {
-#  source = "github.com/rms1000watt/terraform-aws-codepipeline-ecs.git"
-#
-#  github_org         = "seanscottking"
-#  github_repo        = "notejam"
-#  github_oauth_token = "f4c57885286e35ec0cfd50bd9613b285dcce33e6"
-#
-#  ecs_cluster         = "notejam-dev"
-#  ecs_service         = "notejam-dev"
-#  ecs_task_definition = "notejam-dev"
-#}
-

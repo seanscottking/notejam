@@ -92,6 +92,10 @@ resource "aws_ecs_service" "main" {
     subnets         = ["${var.private_subnet_ids}"]
     security_groups = ["${var.security_group_ids}"]
   }
+
+  lifecycle = {
+    ignore_changes = ["aws_ecs_task_definition.main"]
+  }
 }
 
 resource "aws_lb_target_group" "main" {
