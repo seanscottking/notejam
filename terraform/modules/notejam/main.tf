@@ -52,13 +52,12 @@ module "mywebservice" {
 module "cicd" {
   source = "../cicd"
 
-  name              = "${local.name_tag}"
-  project           = "${local.project}"
-  environment       = "${local.environment}"
-  github_owner      = "${var.github_owner}"
-  github_repo       = "${var.github_repo}"
-  github_branch     = "${var.github_branch}"
-  github_oauthtoken = "${var.github_oauthtoken}"
+  name          = "${local.name_tag}"
+  project       = "${local.project}"
+  environment   = "${local.environment}"
+  github_owner  = "${var.github_owner}"
+  github_repo   = "${var.github_repo}"
+  github_branch = "${var.github_branch}"
 }
 
 resource "local_file" "task-definition-migrate" {

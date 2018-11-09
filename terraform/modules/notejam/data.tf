@@ -7,7 +7,7 @@ data "template_file" "container-definitions" {
   vars {
     aws_cloudwatch_log_group_id = "${aws_cloudwatch_log_group.main.id}"
     aws_region                  = "${data.aws_region.main.name}"
-    image                       = "748787408638.dkr.ecr.us-east-1.amazonaws.com/notejam:latest"
+    image                       = "${data.aws_caller_identity.main.account_id}.dkr.ecr.${data.aws_region.main.name}.amazonaws.com/${local.name_tag}"
     mysql_database              = "${module.rds.this_db_instance_name}"
     mysql_host                  = "${module.rds.this_db_instance_address}"
     mysql_password              = "${random_string.main.result}"
