@@ -1,3 +1,9 @@
+Original repo here: https://github.com/komarserjio/notejam. This fork was modified to include:
+
+* Dockerization
+* AWS CodeBuild support
+* MySQL support
+
 *******
 Notejam
 *******
