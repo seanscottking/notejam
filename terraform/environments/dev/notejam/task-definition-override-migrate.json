@@ -1,8 +1,0 @@
-{
-  "containerOverrides": [
-    {
-      "name": "notejam-dev",
-      "command": ["php","artisan","migrate","--force"]
-    }
-  ]
-}
