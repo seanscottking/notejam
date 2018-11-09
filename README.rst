@@ -1,5 +1,6 @@
 Original repo here: https://github.com/komarserjio/notejam. This fork was modified to include:
 
+* Laravel selected as framework of choice
 * Dockerization
 * AWS CodeBuild support
 * MySQL support
