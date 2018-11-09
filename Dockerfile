@@ -1,6 +1,6 @@
 FROM php:5
 
-COPY ./notejam /app
+COPY ./laravel/notejam /app
 WORKDIR /app
 
 RUN apt-get update && \
